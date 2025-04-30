@@ -1,0 +1,22 @@
+component 1  - feature file
+component 2 - step definition
+component 3 - Runner class/Test Runner
+background - it is applicable to one feature file background will be different for different feature files
+all the steps can be taken in background which are common across all the scenearios of one feature file till the flow is not broken
+hooks - in hooks, we keep pre condition and post condition of all the scenarios from all the feature files
+rules for hooks - it should be available under steps package we have 2 hooks in cucumber - @before and @after
+flow of execution after implementing hooks and background hooks - background - scenario
+data driven testing - when one test case executes against multiple sets of data hooks, background and scenario will be executed based on total sets of data we implement scenario outline with examples table
+
+Framework---
+
+ main- developers - use this folder for writing the code which is used to develop the application
+ main folder developers
+
+ test--- is  a folder which QA Automation engineers used for what to write the code
+ through which we test the application, we write it under test folder
+
+ Java--- is to write all java classes
+
+ Resources= is to write all non java stuffs such as features files, excel,  config files.
+
