@@ -4,18 +4,22 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.LoginPage;
+import utilis.CommonMethods;
+import utilis.ConfigReader;
+import utilis.ExcelReader;
 
 import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
-public class LoginSteps extends BaseClass {
+public class LoginSteps extends CommonMethods {
     //public static WebDriver driver;
+
+    LoginPage loginPage=new LoginPage();
 
     @Given("user is able to access HRMS application")
     public void user_is_able_to_access_hrms_application() {
@@ -28,18 +32,21 @@ public class LoginSteps extends BaseClass {
     @When("user enters valid username and password")
     public void user_enters_valid_username_and_password() {
 
-        WebElement usernameField = driver.findElement(By.id("txtUsername"));
-        usernameField.sendKeys("admin");
+       // WebElement usernameField = driver.findElement(By.id("txtUsername"));
+        //usernameField.sendKeys("admin");
+        sendText(ConfigReader.read("userName"), loginPage.usernameField);
 
-        WebElement passwordField = driver.findElement(By.id("txtPassword"));
-        passwordField.sendKeys("Hum@nhrm123");
+        //WebElement passwordField = driver.findElement(By.id("txtPassword"));
+        //passwordField.sendKeys("Hum@nhrm123");
+        sendText(ConfigReader.read("password"), loginPage.passwordField);
     }
 
     @When("user clicks on login button")
     public void user_clicks_on_login_button() {
 
-        WebElement loginButton = driver.findElement(By.id("btnLogin"));
-        loginButton.click();
+        //WebElement loginButton = driver.findElement(By.id("btnLogin"));
+        //loginButton.click();
+        click(loginPage.loginButton);
     }
 
     @Then("user is able to see dashboard page")
@@ -50,13 +57,15 @@ public class LoginSteps extends BaseClass {
     @When("user clicks on PIM option")
     public void user_clicks_on_pim_option() {
         WebElement pimOption = driver.findElement(By.id("menu_pim_viewPimModule"));
-        pimOption.click();
+        //pimOption.click();
+        click(pimOption);
     }
 
     @When("user clicks on Add employee option")
     public void user_clicks_on_add_employee_option() {
         WebElement addEmpOption = driver.findElement(By.id("menu_pim_addEmployee"));
-        addEmpOption.click();
+        //addEmpOption.click();
+        click(addEmpOption);
 
 
     }
@@ -139,7 +148,7 @@ public class LoginSteps extends BaseClass {
 
     @When("user adds multiple employees from excel file")
     public void user_adds_multiple_employees_from_excel_file() throws IOException {
-        List<Map<String, String>> newEmployees =ExcelReader.read();
+        List<Map<String, String>> newEmployees = ExcelReader.read();
         for (Map<String, String> employee : newEmployees) {
             WebElement firstNameLocator = driver.findElement(By.id("firstName"));
             WebElement middleNameLocator = driver.findElement(By.id("middleName"));
@@ -157,11 +166,13 @@ public class LoginSteps extends BaseClass {
     }
     @When("user enters invalid username and password")
     public void user_enters_invalid_username_and_password() {
-        WebElement usernameField = driver.findElement(By.id("txtUsername"));
-        WebElement passwordField = driver.findElement(By.id("txtPassword"));
+       // WebElement usernameField = driver.findElement(By.id("txtUsername"));
+        //loginPage.sendKeys("admin");
+        sendText("admin", loginPage.usernameField);
 
-        usernameField.sendKeys("admin321");
-        passwordField.sendKeys("ghsnertuldnf");
+        //WebElement passwordField = driver.findElement(By.id("txtPassword"));
+       // passwordField.sendKeys("ghsnertuldnf");
+        sendText("Hum@h", loginPage.passwordField);
 
     }
     @Then("user can see error message")

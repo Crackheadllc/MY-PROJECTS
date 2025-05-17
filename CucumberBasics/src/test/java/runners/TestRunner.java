@@ -13,9 +13,9 @@ import org.junit.runner.RunWith;
         glue = "steps",
         //it stops actual execution when set to true and scans all the steps
         //also, it provides missing step definition
-        //to start the execution, set the value of dryrun to pause
-        dryRun = true,
-        tags = "@error"
+        //to start the execution, set the value of dry run to pause
+        dryRun = false,
+        tags = "@godwin"
 )
 
 public class TestRunner {

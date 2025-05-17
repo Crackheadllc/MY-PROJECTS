@@ -3,10 +3,11 @@ package steps;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.openqa.selenium.chrome.ChromeDriver;
+import utilis.CommonMethods;
 
 import java.time.Duration;
 
-public class Hooks extends BaseClass{
+public class Hooks extends CommonMethods {
 
     @Before
     public void start(){
@@ -19,6 +20,7 @@ public class Hooks extends BaseClass{
 
     @After
     public void end(){
-        driver.quit();
+       // driver.quit();
+        closeBrowser();
     }
 }
